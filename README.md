@@ -1,4 +1,4 @@
-Page Replacement Algorithm Visualizer
+        Page Replacement Algorithm Visualizer
 📌 Overview
 This project implements and compares five classic page replacement algorithms:
 
