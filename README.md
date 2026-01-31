@@ -1,73 +1,68 @@
-# React + TypeScript + Vite
+Page Replacement Algorithm Visualizer
+📌 Overview
+This project implements and compares five classic page replacement algorithms:
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+FIFO (First-In-First-Out)
 
-Currently, two official plugins are available:
+LRU (Least Recently Used)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+LFU (Least Frequently Used)
 
-## React Compiler
+Optimal
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Clock
 
-## Expanding the ESLint configuration
+The tool accepts arbitrary reference strings and frame sizes, generates execution traces, and calculates page fault rates. Results are displayed through tables and charts for easy comparison.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+🚀 Features
+Simulation of multiple page replacement strategies.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Visualization of frame states at each step.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+Comparison charts and tables for fault/hit rates.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Modular codebase with separate algorithm and component folders.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Built with React + TypeScript + Vite for speed and simplicity.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+📂 Project Structure
+Code
+src/
+├── algorithms/        # FIFO, LRU, LFU, Optimal, Clock implementations
+├── components/        # UI components (charts, tables, forms, visualization)
+├── App.tsx            # Main application entry
+├── main.tsx           # React root
+⚙️ Installation & Setup
+Clone the repository and install dependencies:
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+bash
+git clone https://github.com/<your-username>/page-replacement-algorithm.git
+cd page-replacement-algorithm
+npm install
+npm run dev
+Open http://localhost:5173 in your browser.
+
+📊 Usage
+Enter a reference string and frame size in the simulation form.
+
+Run the simulation to view step-by-step results.
+
+Compare algorithms using charts and tables.
+
+📘 References
+Silberschatz, A., Galvin, P. B., & Gagne, G. (2018). Operating System Concepts (10th ed.). Wiley.
+
+Tanenbaum, A. S., & Bos, H. (2015). Modern Operating Systems (4th ed.). Pearson.
+
+👥 Contributors
+Group 10 (Operating Systems Project)
+
+Developed by 
+MICHAEL ANARFO_ 22052414
+ASIAMAH EMMANUEL DONKOR_22244211
+NARH HENRY PADI DROMOR_10905050
+OBADIAH DONKOR_22033341
+WILLIAM KOFI ADADE_22163445
+GYEKYE CHRISTIAN_22236160
+GEORGE ASIRIFI FORDJOUR_22099948
+PAPA BOYE_22042700
