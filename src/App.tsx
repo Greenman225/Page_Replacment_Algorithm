@@ -1,35 +1,52 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import { SimulationForm } from "./Component/SimulationForm";
+import { ComparisonChart } from "./Component/ComparisonChart";
+import { ComparisonTable } from "./Component/ComparisonTable";
+import type { SimulationResult } from "./Algorithm/types";
+
+// Import algorithms
+import { fifo } from "./Algorithm/fifo";
+import { clock } from "./Algorithm/clock";
+import { lfu } from "./Algorithm/lfu";
+import { lru } from "./Algorithm/lru";
+import { optimal } from "./Algorithm/optimal";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [results, setResults] = useState<SimulationResult[]>([]);
+
+  const handleRun = (referenceString: number[], frameCount: number) => {
+    // Run all algorithms
+    const fifoResult = fifo.simulate(referenceString, frameCount);
+    const clockResult = clock.simulate(referenceString, frameCount);
+    const lfuResult = lfu.simulate(referenceString, frameCount);
+    const lruResult = lru.simulate(referenceString, frameCount);
+    const optimalResult = optimal.simulate(referenceString, frameCount);
+
+    // Store results together
+    setResults([fifoResult, clockResult, lfuResult, lruResult, optimalResult]);
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="min-h-screen bg-gray-900 text-white p-6">
+      {/* Title */}
+      <h1 className="text-3xl font-bold mb-6">Page Replacement Simulator</h1>
+
+      {/* Simulation Form */}
+      <div className="mb-8">
+        <SimulationForm onRun={handleRun} />
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
+
+      {/* Chart Visualization */}
+      <div className="mb-8">
+        <ComparisonChart results={results} />
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+
+      {/* Table Visualization */}
+      <div className="mb-8">
+        <ComparisonTable results={results} />
+      </div>
+    </div>
+  );
 }
 
-export default App
+export default App;
